@@ -1,0 +1,19 @@
+version: '3'
+
+services: 
+
+  terraform:
+    image: hashicorp/terraform:1.4
+    entrypoint: sh
+    env_file:
+      - ./infra/.env
+    volumes:
+      - ./infra:/infra
+    tty: true
+
+  aws:
+    image: amazon/aws-cli:latest
+    entrypoint: sh
+    env_file:
+      - ./infra/.env
+    tty: true
