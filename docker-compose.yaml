@@ -14,6 +14,6 @@ services:
   aws:
     image: amazon/aws-cli:latest
     entrypoint: sh
-    env_file:
-      - ./infra/.env
+    volumes:
+      - ./aws:/root/.aws
     tty: true

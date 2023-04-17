@@ -42,3 +42,29 @@ data "aws_iam_policy_document" "ec2_assume_role" {
   }
 }
 
+##################
+# iam user
+##################
+resource "aws_iam_user" "yamashita" {
+  name = "user-yamashita"
+
+  tags = {
+    Name    = "${var.project}-yamashita"
+    Project = "${var.project}"
+  }
+}
+
+resource "aws_iam_user_policy" "search_ami" {
+  user = aws_iam_user.yamashita.name
+  policy = data.aws_iam_policy_document.search_ami.json
+}
+
+data "aws_iam_policy_document" "search_ami" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:DescribeImages",
+    ]
+    resources = [ "*" ]
+  }
+}
