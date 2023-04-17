@@ -1,0 +1,7 @@
+[default]
+region=ap-northeast-1
+output=json
+
+[profile userA]
+region=ap-northeast-1
+output=json
