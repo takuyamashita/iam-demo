@@ -9,6 +9,7 @@ services:
       - ./infra/.env
     volumes:
       - ./infra:/infra
+    working_dir: /infra
     tty: true
 
   aws:
