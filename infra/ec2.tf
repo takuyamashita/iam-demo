@@ -10,7 +10,6 @@ resource "aws_instance" "app" {
   iam_instance_profile        = aws_iam_instance_profile.app.name
 
   tags = {
-    Name    = "${var.project}-app"
-    Project = "${var.project}"
+    Name    = "${local.project_name}-app"
   }
 }

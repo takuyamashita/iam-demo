@@ -1,4 +1,3 @@
-
 terraform {
   required_version = "~> 1.4.5"
 
@@ -16,8 +15,14 @@ terraform {
   }
 }
 
-provider "aws" {}
+provider "aws" {
+  default_tags {
+    tags = {
+      project = local.project_name
+    }
+  }
+}
 
-variable "project" {
-  type = string
+locals {
+  project_name = "iam-demo"
 }

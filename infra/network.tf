@@ -8,8 +8,7 @@ resource "aws_vpc" "vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name    = "${var.project}-vpc"
-    Project = "${var.project}"
+    Name    = "${local.project_name}-vpc"
   }
 
 }
@@ -24,8 +23,7 @@ resource "aws_subnet" "public_1a" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name    = "${var.project}-subnet-public-1a"
-    Project = "${var.project}"
+    Name    = "${local.project_name}-subnet-public-1a"
   }
 }
 
@@ -36,8 +34,7 @@ resource "aws_route_table" "public_1a" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    Name    = "${var.project}-public-1a-route-table"
-    Project = "${var.project}"
+    Name    = "${local.project_name}-public-1a-route-table"
   }
 }
 
@@ -66,8 +63,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    Name    = "${var.project}-igw"
-    Project = "${var.project}"
+    Name    = "${local.project_name}-igw"
   }
 }
 
@@ -75,12 +71,11 @@ resource "aws_internet_gateway" "igw" {
 # security group
 ##################
 resource "aws_security_group" "app" {
-  name   = "${var.project}-app-sg"
+  name   = "${local.project_name}-app-sg"
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    Name    = "${var.project}-app-security-group"
-    Project = "${var.project}"
+    Name    = "${local.project_name}-app-security-group"
   }
 }
 
