@@ -2,14 +2,24 @@ version: '3'
 
 services: 
 
-  terraform:
+  terraform-a:
     image: hashicorp/terraform:1.4
     entrypoint: sh
     env_file:
-      - ./infra/.env
+      - ./account_a/.env
     volumes:
-      - ./infra:/infra
-    working_dir: /infra
+      - ./account_a:/account_a
+    working_dir: /account_a
+    tty: true
+
+  terraform-b:
+    image: hashicorp/terraform:1.4
+    entrypoint: sh
+    env_file:
+      - ./account_b/.env
+    volumes:
+      - ./account_b:/account_b
+    working_dir: /account_b
     tty: true
 
   aws:
