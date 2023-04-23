@@ -3,13 +3,13 @@
 ##################
 resource "aws_iam_role" "developer" {
   name               = "developer"
-  assume_role_policy = data.aws_iam_policy_document.developer_assume_role.json
+  assume_role_policy = data.aws_iam_policy_document.developer_trust_policy.json
 }
 
 ##################
 # iam assume policy
 ##################
-data "aws_iam_policy_document" "developer_assume_role" {
+data "aws_iam_policy_document" "developer_trust_policy" {
   statement {
     actions = ["sts:AssumeRole"]
     principals {
