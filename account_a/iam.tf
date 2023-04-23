@@ -44,16 +44,17 @@ resource "aws_iam_user" "yamada" {
   name = "yamada"
 }
 
-resource "aws_iam_user_policy" "search_ami" {
+resource "aws_iam_user_policy" "yamada_policy" {
   user = aws_iam_user.yamada.name
-  policy = data.aws_iam_policy_document.search_ami.json
+  policy = data.aws_iam_policy_document.yamada_policy.json
 }
 
-data "aws_iam_policy_document" "search_ami" {
+data "aws_iam_policy_document" "yamada_policy" {
   statement {
     effect = "Allow"
     actions = [
       "ec2:DescribeImages",
+      "sts:AssumeRole"
     ]
     resources = [ "*" ]
   }
