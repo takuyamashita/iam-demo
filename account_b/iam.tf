@@ -44,7 +44,8 @@ data "aws_iam_policy_document" "create_lambda" {
       "iam:CreateRole",
       "iam:DeleteRole",
       "iam:AttachRolePolicy",
-      "lambda:CreateFunction"
+      "lambda:CreateFunction",
+      "lambda:DeleteFunction",
     ]
     resources = ["*"]
   }
