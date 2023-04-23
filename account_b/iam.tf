@@ -2,12 +2,8 @@
 # i am role
 ##################
 resource "aws_iam_role" "developer" {
-  name               = "${local.project_name}-iam-role-developer"
+  name               = "developer"
   assume_role_policy = data.aws_iam_policy_document.developer_assume_role.json
-
-  tags = {
-    Name    = "${local.project_name}-iam-role-developer"
-  }
 }
 
 ##################

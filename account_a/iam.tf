@@ -12,10 +12,6 @@ resource "aws_iam_instance_profile" "app" {
 resource "aws_iam_role" "app_iam_role" {
   name               = "${local.project_name}-app-iam-role"
   assume_role_policy = data.aws_iam_policy_document.ec2_assume_role.json
-
-  tags = {
-    Name    = "${local.project_name}-app-iam-role"
-  }
 }
 
 resource "aws_iam_role_policy_attachment" "ssm" {
