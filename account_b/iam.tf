@@ -49,3 +49,31 @@ data "aws_iam_policy_document" "create_lambda" {
     resources = ["*"]
   }
 }
+
+resource "aws_iam_role_policy_attachment" "pass_role" {
+  role       = aws_iam_role.developer.name
+  policy_arn = aws_iam_policy.pass_role.arn
+}
+
+resource "aws_iam_policy" "pass_role" {
+  name   = "pass-role"
+  policy = data.aws_iam_policy_document.pass_role.json
+}
+
+data "aws_iam_policy_document" "pass_role" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "iam:PassRole",
+    ]
+    resources = ["*"]
+    condition {
+      test = "StringEquals"
+      variable = "iam:PassedToService"
+
+      values = [
+        "lambda.amazonaws.com"
+      ]
+    }
+  }
+}
