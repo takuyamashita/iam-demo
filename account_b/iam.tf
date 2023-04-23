@@ -18,12 +18,12 @@ data "aws_iam_policy_document" "developer_assume_role" {
     actions = ["sts:AssumeRole"]
     principals {
       type        = "AWS"
-      identifiers = ["arn:aws:iam::123456789012:user/my-user"]
+      identifiers = ["arn:aws:iam::717305115395:user/yamada"]
     }
   }
 }
 
 resource "aws_iam_role_policy_attachment" "ec2_full" {
-  role       = aws_iam_role.developer.arn
+  role       = aws_iam_role.developer.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
 }
